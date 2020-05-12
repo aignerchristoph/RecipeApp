@@ -1,0 +1,54 @@
+[
+    {
+        "categoryTitle": "Fleisch",
+        "data": [
+            {
+                "id": 1,
+                "title": "Wiener Schnitzerl",
+                "zutaten": [
+                    "Semmelbrösel",
+                    "Kalbfleisch",
+                    "Mehl",
+                    "Salz",
+                    "Schmalz"
+                ],
+                "kochzeit": 60,
+                "image": "wienerSchnitzel.jpg"
+            },
+            {
+                "id": 2,
+                "title": "Cevapcici",
+                "zutaten": [
+                    "Faschiertes",
+                    "Knoblauch",
+                    "Zwiebeln",
+                    "Salz",
+                    "Pfeffer",
+                    "Oregano",
+                    "Paprikapulver",
+                    "Semmelbrösel",
+                    "Eier"
+                ],
+                "kochzeit": 45,
+                "image": "wienerSchnitzel.jpg"
+            }
+        ]
+    },
+    {
+        "categoryTitle": "Vegetarisch",
+        "data": [
+            {
+                "id": 1,
+                "title": "Eiernockerl",
+                "zutaten": [
+                    "Eier",
+                    "Mehl",
+                    "Salz",
+                    "Wasser"
+                ],
+                "kochzeit": 60,
+                "image": "wienerSchnitzel.jpg"
+            }
+        ]
+    }
+]
