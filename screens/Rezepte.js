@@ -7,6 +7,7 @@ import {
   SectionList
 } from "react-native";
 import { grey } from "ansi-colors";
+import { TouchableOpacity } from "react-native-gesture-handler";
 // import data from "assets/data/rezepte.json";
 
 const DATA = [
@@ -59,12 +60,16 @@ const Item = ({ title }) => (
   </View>
 );
 
-export default function Rezepte() {
+export default function Rezepte(props) {
   return (
     <SafeAreaView style={styles.container}>
       <SectionList
         sections={DATA}
-        renderItem={({ item }) => <Item title={item.title} />}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={props.handleRezept(item.zutaten)}>
+            <Item title={item.title} />
+          </TouchableOpacity>
+        )}
         renderSectionHeader={({ section: { categoryTitle } }) => (
           <Text style={styles.header}>{categoryTitle}</Text>
         )}

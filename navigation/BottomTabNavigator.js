@@ -3,7 +3,7 @@ import * as React from "react";
 
 import TabBarIcon from "../components/TabBarIcon";
 import Rezepte from "../screens/Rezepte";
-import LinksScreen from "../screens/LinksScreen";
+import Einkaufsliste from "../screens/Einkaufsliste";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Home";
@@ -19,12 +19,22 @@ export default function BottomTabNavigator({ navigation, route }) {
     },
     headerTintColor: "#fff"
   });
+  const [zutaten, setRezept] = React.useState([]);
+
+  const handleRezept = newValue => () => {
+    if (!zutaten.includes(...newValue)) {
+      setRezept([...zutaten, ...newValue]);
+    }
+  };
+
+  const rezepteComponent = () => <Rezepte handleRezept={handleRezept} />;
+  const listComponent = () => <Einkaufsliste list={zutaten} />;
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
-        component={Rezepte}
+        component={rezepteComponent}
         options={{
           title: "Rezepte",
           tabBarIcon: ({ focused }) => (
@@ -34,7 +44,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Links"
-        component={LinksScreen}
+        component={listComponent}
         options={{
           title: "Einkaufsliste",
           tabBarIcon: ({ focused }) => (
