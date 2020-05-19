@@ -17,7 +17,7 @@ export default function BottomTabNavigator({ navigation, route }) {
     headerStyle: {
       backgroundColor: "lightblue"
     },
-    headerTintColor: "#fff"
+    headerTintColor: "black"
   });
   const [zutaten, setRezept] = React.useState([]);
 
