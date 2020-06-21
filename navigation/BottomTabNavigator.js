@@ -15,20 +15,28 @@ export default function BottomTabNavigator({ navigation, route }) {
   navigation.setOptions({
     headerTitle: getHeaderTitle(route),
     headerStyle: {
-      backgroundColor: "lightblue"
+      backgroundColor: "lightblue",
     },
-    headerTintColor: "black"
+    headerTintColor: "black",
   });
   const [zutaten, setRezept] = React.useState([]);
 
-  const handleRezept = newValue => () => {
+  const handleRezept = (newValue) => () => {
     if (!zutaten.includes(...newValue)) {
       setRezept([...zutaten, ...newValue]);
     }
   };
 
+  const handleCheck = (index) => {
+    const newZutaten = [...zutaten];
+    newZutaten[index].isChecked = !newZutaten[index].isChecked;
+    setRezept(newZutaten);
+  };
+
   const rezepteComponent = () => <Rezepte handleRezept={handleRezept} />;
-  const listComponent = () => <Einkaufsliste list={zutaten} />;
+  const listComponent = () => (
+    <Einkaufsliste handleCheck={handleCheck} list={zutaten} />
+  );
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
@@ -39,7 +47,7 @@ export default function BottomTabNavigator({ navigation, route }) {
           title: "Rezepte",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-book" />
-          )
+          ),
         }}
       />
       <BottomTab.Screen
@@ -49,7 +57,7 @@ export default function BottomTabNavigator({ navigation, route }) {
           title: "Einkaufsliste",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="ios-basket" />
-          )
+          ),
         }}
       />
     </BottomTab.Navigator>

@@ -4,9 +4,8 @@ import {
   Text,
   View,
   SafeAreaView,
-  SectionList
+  SectionList,
 } from "react-native";
-import { grey } from "ansi-colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
 // import data from "assets/data/rezepte.json";
 
@@ -16,29 +15,31 @@ const DATA = [
     data: [
       {
         id: 1,
-        title: "Wiener Schnitzerl",
-        zutaten: ["Semmelbrösel", "Kalbfleisch", "Mehl", "Salz", "Schmalz"],
-        kochzeit: 60,
-        image: "wienerSchnitzel.jpg"
+        title: "Wiener Schnitzel",
+        zutaten: [
+          { title: "Semmelbrösel", isChecked: false },
+          { title: "Kalbfleisch", isChecked: false },
+          { title: "Mehl", isChecked: false },
+          { title: "Eier", isChecked: false },
+          { title: "Schmalz", isChecked: false },
+        ],
+        kochzeit: 30,
+        image: "wienerSchnitzel.jpg",
       },
       {
         id: 2,
         title: "Cevapcici",
         zutaten: [
-          "Faschiertes",
-          "Knoblauch",
-          "Zwiebeln",
-          "Salz",
-          "Pfeffer",
-          "Oregano",
-          "Paprikapulver",
-          "Semmelbrösel",
-          "Eier"
+          { title: "Faschiertes", isChecked: false },
+          { title: "Knoblauch", isChecked: false },
+          { title: "Zwiebeln", isChecked: false },
+          { title: "Pfeffer", isChecked: false },
+          { title: "Paprikapulver", isChecked: false },
         ],
         kochzeit: 45,
-        image: "wienerSchnitzel.jpg"
-      }
-    ]
+        image: "Cevapcici.jpg",
+      },
+    ],
   },
   {
     categoryTitle: "Vegetarisch",
@@ -46,12 +47,17 @@ const DATA = [
       {
         id: 1,
         title: "Eiernockerl",
-        zutaten: ["Eier", "Mehl", "Salz", "Wasser"],
+        zutaten: [
+          { title: "Eier", isChecked: false },
+          { title: "Mehl", isChecked: false },
+          { title: "Salz", isChecked: false },
+          { title: "Wasser", isChecked: false },
+        ],
         kochzeit: 60,
-        image: "wienerSchnitzel.jpg"
-      }
-    ]
-  }
+        image: "wienerSchnitzel.jpg",
+      },
+    ],
+  },
 ];
 
 const Item = ({ title }) => (
@@ -82,17 +88,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 16,
-    marginHorizontal: 12
+    marginHorizontal: 12,
   },
   item: {
     padding: 20,
     marginVertical: 4,
-    backgroundColor: "lightgrey"
+    backgroundColor: "lightgrey",
   },
   header: {
-    fontSize: 32
+    fontSize: 32,
   },
   title: {
-    fontSize: 24
-  }
+    fontSize: 24,
+  },
 });

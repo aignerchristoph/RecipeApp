@@ -5,15 +5,13 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 
 function Item(props) {
-  const [isSelected, handleSelect] = useState(false);
-
   return (
     <TouchableOpacity
-      onPress={() => handleSelect(!isSelected)}
-      style={[styles.item, isSelected && styles.itemSelected]}
+      onPress={() => props.handleCheck(props.index)}
+      style={[styles.item, props.isChecked && styles.itemSelected]}
     >
       <Text style={styles.title}>{props.title}</Text>
-      {isSelected ? (
+      {props.isChecked ? (
         <Ionicons name="ios-checkmark-circle-outline" color="green" size={30} />
       ) : (
         <Ionicons name="ios-radio-button-off" size={30} color="gray" />
@@ -25,9 +23,21 @@ function Item(props) {
 export default function Einkaufsliste(props) {
   return (
     <ScrollView style={styles.container}>
-      {props.list.map((item, index) => (
-        <Item key={index + 1} index={index} title={item} />
-      ))}
+      {props.list.length > 0 ? (
+        props.list.map((item, index) => (
+          <Item
+            handleCheck={props.handleCheck}
+            key={index + 1}
+            index={index}
+            title={item.title}
+            isChecked={item.isChecked}
+          />
+        ))
+      ) : (
+        <View style={styles.fallBack}>
+          <Text style={styles.title}>Such dir zuerst ein Rezept aus</Text>
+        </View>
+      )}
     </ScrollView>
   );
 }
@@ -35,7 +45,7 @@ export default function Einkaufsliste(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   item: {
     padding: 20,
@@ -44,12 +54,16 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
   },
   itemSelected: {
-    backgroundColor: "lightgreen"
+    backgroundColor: "lightgreen",
   },
   title: {
-    fontSize: 18
-  }
+    fontSize: 18,
+  },
+  fallBack: {
+    display: "flex",
+    alignItems: "center",
+  },
 });
